@@ -1,0 +1,13 @@
+# IntelliJ IDEA
+.idea/
+
+# Exclude workspace.xml file
+*.iml
+*.iws
+*.ipr
+.idea/
+compiler.xml
+jarRepositories.xml
+workspace.xml
+heroKApp.iml
+target/
