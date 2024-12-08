@@ -40,7 +40,3 @@ jobs:
       # Run tests (including integration tests for the API calls)
       - name: Run tests
         run: mvn test
-
-      # Optional: Run integration tests for external API calls if you have them
-      - name: Run integration tests
-        run: mvn verify -DskipTests=false
