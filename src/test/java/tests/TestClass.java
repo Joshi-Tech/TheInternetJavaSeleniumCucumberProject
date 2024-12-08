@@ -12,6 +12,7 @@ class TestClass extends BasePage {
     void homePageTest() {
         assertEquals("Welcome to the-internet", basePage.homePage().getHeader());
         assertEquals("Available Examples", basePage.homePage().getH2());
+        System.out.println("*****ASSERTION PASSED*****");
     }
 
     @Test
