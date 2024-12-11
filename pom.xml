@@ -36,9 +36,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
-            <!--<groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.15.0</version>-->
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -66,24 +63,24 @@
             <artifactId>testng</artifactId>
             <version>7.8.0</version>
         </dependency>
-         <dependency>
-             <groupId>io.cucumber</groupId>
-             <artifactId>cucumber-junit</artifactId>
-             <version>7.14.0</version>
-             <scope>test</scope>
-         </dependency>
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.13.2</version>
-             <scope>test</scope>
-         </dependency>
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.13.2</version>
-             <scope>compile</scope>
-         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -112,5 +109,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
