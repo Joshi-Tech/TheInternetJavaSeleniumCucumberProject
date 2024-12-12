@@ -22,7 +22,7 @@ public class TestContext {
     }
 
     public void setUp() {
-        if (configFileReader.runTestMode().equals("remote")) {
+        if (configFileReader.testEnvironment().equals("remote")) {
             try {
                 remoteWebDriver = LambdaTest.setCapability();
                 remoteWebDriver.get(configFileReader.getApplicationUrl()); // Navigate to the application under test
@@ -36,7 +36,7 @@ public class TestContext {
 
 
     public void tearDown() {
-        if (configFileReader.runTestMode().equals("remote")) {
+        if (configFileReader.testEnvironment().equals("remote")) {
             if (remoteWebDriver != null) {
                 ((JavascriptExecutor) remoteWebDriver).executeScript("lambda-status=" + status);
                 remoteWebDriver.quit();

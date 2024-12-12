@@ -68,8 +68,8 @@ public class ConfigFileReader {
         return properties.getProperty("remoteUrl");
     }
 
-    public String runTestMode() {
-        return properties.getProperty("runTest");
+    public String testEnvironment() {
+        return properties.getProperty("testEnvironment");
     }
 
     public String getUserName() {

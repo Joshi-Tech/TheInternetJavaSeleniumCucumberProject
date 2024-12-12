@@ -1,4 +1,4 @@
-package steps;
+package steps.hook;
 
 import dataProvider.ConfigFileReader;
 import io.cucumber.java.After;
@@ -18,7 +18,7 @@ public class Hook {
 
     @Before
     public void setUp() {
-        if (configFileReader.runTestMode().equalsIgnoreCase("remote")) {
+        if (configFileReader.testEnvironment().equalsIgnoreCase("remote")) {
             initializeRemoteDriver();
         } else {
             initializeLocalDriver();
