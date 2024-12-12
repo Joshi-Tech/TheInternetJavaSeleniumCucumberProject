@@ -1,4 +1,4 @@
-package hooks;
+package steps;
 
 import dataProvider.ConfigFileReader;
 import io.cucumber.java.After;

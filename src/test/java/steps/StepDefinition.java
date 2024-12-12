@@ -1,6 +1,5 @@
-package tests.stepDef;
+package steps;
 
-import hooks.Hook;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
