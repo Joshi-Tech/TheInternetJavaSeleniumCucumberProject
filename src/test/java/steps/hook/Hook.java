@@ -8,13 +8,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import remoteTest.LambdaTest;
+import remotetest.LambdaTest;
 
 public class Hook {
     private static WebDriver driver;
     private RemoteWebDriver remoteWebDriver;
     private final ConfigFileReader configFileReader = new ConfigFileReader();
-    private boolean status = false;
 
     @Before
     public void setUp() {
@@ -28,8 +27,10 @@ public class Hook {
     private void initializeRemoteDriver() {
         try {
             remoteWebDriver = LambdaTest.setCapability();
-            remoteWebDriver.get(configFileReader.getApplicationUrl());
-            driver = remoteWebDriver;
+            if (remoteWebDriver != null) {
+                remoteWebDriver.get(configFileReader.getApplicationUrl());
+                driver = remoteWebDriver;
+            }
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize remote driver: " + e.getMessage(), e);
         }
@@ -43,6 +44,7 @@ public class Hook {
 
     @After
     public void tearDown() {
+        boolean status = false;
         if (driver != null) {
             try {
                 if (remoteWebDriver != null) {

@@ -6,12 +6,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import remoteTest.LambdaTest;
+import remotetest.LambdaTest;
 
 public class TestContext {
     private static WebDriver driver;
     private RemoteWebDriver remoteWebDriver;
-    private boolean status = false;
 
     private final ConfigFileReader configFileReader = new ConfigFileReader();
 
@@ -25,7 +24,9 @@ public class TestContext {
         if (configFileReader.testEnvironment().equals("remote")) {
             try {
                 remoteWebDriver = LambdaTest.setCapability();
-                remoteWebDriver.get(configFileReader.getApplicationUrl()); // Navigate to the application under test
+                if (remoteWebDriver != null) {
+                    remoteWebDriver.get(configFileReader.getApplicationUrl()); // Navigate to the application under test
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -36,6 +37,7 @@ public class TestContext {
 
 
     public void tearDown() {
+        boolean status = false;
         if (configFileReader.testEnvironment().equals("remote")) {
             if (remoteWebDriver != null) {
                 ((JavascriptExecutor) remoteWebDriver).executeScript("lambda-status=" + status);

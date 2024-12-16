@@ -10,6 +10,7 @@ public class FramesPage extends CommonAttributes {
     }
 
     public String iFrameText() {
+        driver.findElement(By.cssSelector("a[href='/iframe']")).click();
         driver.switchTo().frame(driver.findElement(By.cssSelector(".tox-edit-area__iframe")));
         return driver.findElement(By.cssSelector("#tinymce>p")).getText();
     }

@@ -5,11 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class CommonAttributes extends BasePage {
 
-    protected WebDriver driver;
-
     public CommonAttributes(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
 
     public void clickOnLink(String link) {

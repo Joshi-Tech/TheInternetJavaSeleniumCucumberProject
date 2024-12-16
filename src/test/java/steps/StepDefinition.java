@@ -8,13 +8,14 @@ import pages.BasePage;
 import steps.hook.Hook;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepDefinition {
-    private static WebDriver driver;
     private BasePage basePage;
 
     @Given("they are on Home page")
     public void they_are_on_home_page() {
+        WebDriver driver;
         driver = new Hook().getDriver();
         basePage = new BasePage(driver);
         assertEquals("Welcome to the-internet", basePage.commonAttributes().getHeading());
@@ -33,6 +34,16 @@ public class StepDefinition {
         }
     }
 
+    @When("they can see Alert")
+    public void they_can_see_alert() {
+        assertEquals("You selected a context menu", basePage.contextMenu().getAlertBoxText());
+    }
+
+    @Then("they can click on the Alert")
+    public void they_can_click_on_the_alert() {
+        basePage.contextMenu().clickContextMenu();
+    }
+
     @Then("they can see {string} as expected")
     public void they_can_see_as_expected(String header) {
         switch (header.trim()) {
@@ -43,5 +54,41 @@ public class StepDefinition {
             case "Hovers" -> assertEquals("Hovers", basePage.hoverOverPage().getH3());
             case "Opening a new window" -> assertEquals("Opening a new window", basePage.windowsHandlingPage().getH3());
         }
+    }
+
+    @Then("first checkbox is clicked")
+    public void first_checkbox_is_clicked() {
+        assertTrue(basePage.checkBoxPage().isCheckBoxClicked());
+    }
+
+    @Then("they can select correct option")
+    public void they_can_select_correct_option() {
+        basePage.dropDownPage().clickDropDown();
+    }
+
+    @Then("they can see correct text in the Frame")
+    public void they_can_see_correct_text_in_the_frame() {
+        assertEquals("Your content goes here.", basePage.framesPage().iFrameText());
+    }
+
+    @Then("the can move back to main frame")
+    public void the_can_move_back_to_main_frame() {
+        assertEquals("Please request that the admin", basePage.framesPage().getTextFromAlertBox());
+
+    }
+
+    @Then("they can see {string} as {string}")
+    public void they_can_see_as(String number, String user) {
+        assertEquals("name: user1", basePage.hoverOverPage().user(Integer.parseInt(number), user));
+    }
+
+    @Then("they click on the Main window to move to child window")
+    public void they_click_on_the_main_window_to_move_to_child_window() {
+        assertEquals("New Window", basePage.windowsHandlingPage().clickOnMainWindow());
+    }
+
+    @Then("they can return return back to main window")
+    public void they_can_return_return_back_to_main_window() {
+        assertEquals("Powered by Elemental Selenium", basePage.windowsHandlingPage().getTitleOfMainWindow());
     }
 }
