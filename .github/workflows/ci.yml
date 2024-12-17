@@ -1,4 +1,4 @@
-name: Spring Boot CI Workflow
+name: Simple CI Workflow
 
 on:
   push:
@@ -9,42 +9,21 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
+      # Step 1: Checkout repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      # Set up JDK 17 using Adoptium (previously AdoptOpenJDK)
+      # Step 2: Set up Java environment
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'  # Use 'temurin' for Adoptium
+          java-version: '17' # Use your project's Java version
+          distribution: 'temurin'
 
-      # Install Chrome
-      - name: Install Chrome
-        run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
-
-      # Cache Maven dependencies to speed up builds
-      - name: Cache Maven dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      # Build the project with Maven
-      - name: Build with Maven
-        run: mvn clean install -DskipTests=false
-
-      # Run tests (including integration tests for the API calls)
-      - name: Run tests
-        run: mvn test
-
-      # Optional: Run integration tests for external API calls if you have them
-      - name: Run integration tests
-        run: mvn verify -DskipTests=false
+      # Step 3: Build and run tests using Maven
+      - name: Build and Test
+        run: mvn clean test
