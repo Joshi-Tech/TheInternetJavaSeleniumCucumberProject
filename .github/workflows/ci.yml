@@ -36,11 +36,3 @@ jobs:
       # Step 6: Run Tests (Non-Headless Mode)
       - name: Run Tests
         run: mvn test
-
-      # Step 7: Upload Test Results (Optional)
-      - name: Archive test results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: target/surefire-reports/
