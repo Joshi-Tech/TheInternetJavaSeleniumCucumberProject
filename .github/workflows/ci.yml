@@ -1,3 +1,18 @@
+name: Java CI for Selenium Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*  # This will trigger for any feature branches
+  pull_request:
+    branches:
+      - main
+      - develop
+      - feature/*  # This will trigger for pull requests targeting these branches
+  workflow_dispatch:  # Allows for manual triggering of the workflow
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,8 +32,8 @@ jobs:
       # Step 3: Modify config.properties with secrets
       - name: Update config.properties with secrets
         run: |
-          sed -i "s/USER_NAME/${{ secrets.LT_USERNAME }}/g" src/test/resources/config.properties
-          sed -i "s/ACCESS_KEY/${{ secrets.LT_ACCESS_KEY }}/g" src/test/resources/config.properties
+          sed -i "s/USER_NAME/${{ secrets.USER_NAME }}/g" config/configuration.properties
+          sed -i "s/ACCESS_KEY/${{ secrets.ACCESS_KEY }}/g" config/configuration.properties
 
       # Step 4: Cache Maven dependencies
       - name: Cache Maven dependencies
