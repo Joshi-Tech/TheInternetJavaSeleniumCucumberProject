@@ -7,6 +7,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import remotetest.LambdaTest;
 
@@ -37,9 +39,25 @@ public class Hook {
     }
 
     private void initializeLocalDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/");
+        String browserType = configFileReader.browserType();
+        switch (browserType) {
+            case "chrome" -> {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                driver.get("https://the-internet.herokuapp.com/");
+            }
+            case "edge" -> {
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                driver.get("https://the-internet.herokuapp.com/");
+            }
+            case "firefox" -> {
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                driver.get("https://the-internet.herokuapp.com/");
+            }
+            default -> new RuntimeException("Unable to find driver");
+        }
     }
 
     @After

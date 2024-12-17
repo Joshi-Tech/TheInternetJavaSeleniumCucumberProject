@@ -5,6 +5,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import remotetest.LambdaTest;
 
@@ -16,8 +18,23 @@ public class TestContext {
 
     public static WebDriver initializedWebDriver() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        return driver;
+        String driverType = "edge";
+        switch (driverType) {
+            case "chrome" -> {
+                driver = new ChromeDriver();
+                return driver;
+            }
+            case "edge" -> {
+                driver = new EdgeDriver();
+                return driver;
+            }
+            case "firefox" -> {
+                driver = new FirefoxDriver();
+                return driver;
+            }
+            default -> new RuntimeException("Unable to find driver");
+        }
+        return null;
     }
 
     public void setUp() {

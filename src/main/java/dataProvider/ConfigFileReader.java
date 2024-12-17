@@ -83,4 +83,12 @@ public class ConfigFileReader {
     public String getGridURL() {
         return properties.getProperty("gridURL");
     }
+
+    public String getBuildName() {
+        return properties.getProperty("buildName");
+    }
+
+    public String getTestsName() {
+        return properties.getProperty("testName");
+    }
 }
