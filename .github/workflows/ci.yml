@@ -22,8 +22,8 @@ jobs:
           java-version: 17
           distribution: 'temurin'
 
-      - name: Make generate_config.sh executable
-        run: chmod +x generate_config.sh
+#      - name: Make generate_config.sh executable
+#        run: chmod +x generate_config.sh
 
       - name: Generate config.properties
         run: bash generate_config.sh
