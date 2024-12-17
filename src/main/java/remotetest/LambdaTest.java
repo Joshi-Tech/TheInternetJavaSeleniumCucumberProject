@@ -24,7 +24,7 @@ public class LambdaTest {
     public static RemoteWebDriver setCapability() {
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("browserName", configFileReader.browserType());
+            capabilities.setCapability("browserName", "chrome");
             capabilities.setCapability("version", "70.0");
             capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get any available one
             capabilities.setCapability("build", configFileReader.getBuildName());
