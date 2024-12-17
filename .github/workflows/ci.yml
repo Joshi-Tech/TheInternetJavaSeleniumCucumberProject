@@ -27,12 +27,9 @@ jobs:
 
       - name: Generate config.properties
         run: bash generate_config.sh
-        env:
-          USER_NAME: ${{ secrets.USER_NAME }}
-          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-
-      - name: Verify config.properties
-        run: cat src/test/resources/config.properties
+#        env:
+#          USER_NAME: ${{ secrets.USER_NAME }}
+#          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
