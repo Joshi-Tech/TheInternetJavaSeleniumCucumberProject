@@ -13,16 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: 'temurin'
+
+      - name: Make generate_config.sh executable
+        run: chmod +x generate_config.sh
 
       - name: Generate config.properties
         run: bash generate_config.sh
@@ -30,8 +31,9 @@ jobs:
           USER_NAME: ${{ secrets.USER_NAME }}
           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
 
+      - name: Verify config.properties
+        run: cat src/test/resources/config.properties
 
-      # Step 3: Cache Maven dependencies
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -40,15 +42,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Step 4: Install Maven dependencies
       - name: Install Maven dependencies
         run: mvn install -DskipTests=true
 
-      # Step 5: Run Tests (Non-Headless Mode)
-      - name: Run Tests
-        run: mvn test
+      - name: Run Tests with Debug Logs
+        run: mvn test -X
 
-      # Step 6: Upload Test Results (Optional)
       - name: Archive test results
         if: always()
         uses: actions/upload-artifact@v3
