@@ -32,8 +32,8 @@ jobs:
       # Step 3: Modify config.properties with secrets
       - name: Update config.properties with secrets
         run: |
-          sed -i "s/USER_NAME/${{ secrets.USER_NAME }}/g" config.properties
-          sed -i "s/ACCESS_KEY/${{ secrets.ACCESS_KEY }}/g" config.properties
+          sed -i "s/USER_NAME/${{ secrets.USER_NAME }}/g" /config.properties
+          sed -i "s/ACCESS_KEY/${{ secrets.ACCESS_KEY }}/g" /config.properties
 
       # Step 4: Cache Maven dependencies
       - name: Cache Maven dependencies
