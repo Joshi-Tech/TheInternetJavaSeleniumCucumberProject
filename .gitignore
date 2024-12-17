@@ -11,4 +11,4 @@ jarRepositories.xml
 workspace.xml
 heroKApp.iml
 target/
-config/configuration.properties
+#config/configuration.properties
