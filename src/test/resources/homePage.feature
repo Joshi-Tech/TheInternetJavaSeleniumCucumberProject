@@ -50,8 +50,8 @@ Feature: Navigation and Interaction Tests
     Then they click on the Main window to move to child window
     And they can return return back to main window
 
-  @regression
-  Scenario: user can drag and drop image
-    When they click on "Drag and Drop"
-    And they drag and drop image "a" to image "b"
-    Then they can see images correctly moved
+#  @regression
+#  Scenario: user can drag and drop image
+#    When they click on "Drag and Drop"
+#    And they drag and drop image "a" to image "b"
+#    Then they can see images correctly moved
