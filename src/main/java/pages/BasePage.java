@@ -9,10 +9,6 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public void navigateTo(String url) {
-        driver.navigate().to(url);
-    }
-
     public CommonAttributes commonAttributes() {
         return new CommonAttributes(driver);
     }
@@ -43,5 +39,9 @@ public class BasePage {
 
     public HoverOverPage hoverOverPage() {
         return new HoverOverPage(driver);
+    }
+
+    public DragAndDropPage dragAndDropPage() {
+        return new DragAndDropPage(driver);
     }
 }

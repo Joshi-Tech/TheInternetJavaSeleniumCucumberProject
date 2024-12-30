@@ -18,9 +18,11 @@ public class ConfigFileReader {
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
+
             try {
                 properties.load(reader);
                 reader.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

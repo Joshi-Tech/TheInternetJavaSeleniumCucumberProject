@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -43,17 +44,29 @@ public class Hook {
         switch (browserType) {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                driver.get("https://the-internet.herokuapp.com/");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (configFileReader.getHeadLessMode() == true) {
+                    chromeOptions.addArguments("--headless");
+                    driver = new ChromeDriver(chromeOptions);
+                    driver.get("https://the-internet.herokuapp.com/");
+                } else {
+                    driver = new ChromeDriver();
+                    driver.manage().window().maximize();
+                    driver.get("https://the-internet.herokuapp.com/");
+                }
+
+
             }
             case "edge" -> {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
+                driver.manage().window().maximize();
                 driver.get("https://the-internet.herokuapp.com/");
             }
             case "firefox" -> {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
+                driver.manage().window().maximize();
                 driver.get("https://the-internet.herokuapp.com/");
             }
             default -> new RuntimeException("Unable to find driver");

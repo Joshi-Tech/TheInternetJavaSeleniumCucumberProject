@@ -12,9 +12,9 @@ import org.junit.runner.RunWith;
                 "pretty", // Outputs a readable format to the console
                 "html:target/cucumber-reports.html", // HTML report
                 "json:target/cucumber-reports/Cucumber.json" // JSON report for integrations like Allure
-        }//,
-        // monochrome = true                        // Cleaner console output
-        //tags = "@Regression"                      // Optional: Run scenarios with specific tags
+        }/*,
+         monochrome = false,                        // Cleaner console output
+        tags = "@test"  */                    // Optional: Run scenarios with specific tags
 )
 public class TestRunner {
 }
