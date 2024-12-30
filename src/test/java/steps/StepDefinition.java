@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 import steps.hook.Hook;
@@ -30,6 +31,7 @@ public class StepDefinition {
             case "Frames" -> basePage.framesPage().clickOnLink(link);
             case "Hovers" -> basePage.hoverOverPage().clickOnLink(link);
             case "Multiple Windows" -> basePage.windowsHandlingPage().clickOnLink(link);
+            case "Drag and Drop" -> basePage.dragAndDropPage().clickOnLink(link);
             default -> throw new RuntimeException("Value not found");
         }
     }
@@ -37,6 +39,17 @@ public class StepDefinition {
     @When("they can see Alert")
     public void they_can_see_alert() {
         assertEquals("You selected a context menu", basePage.contextMenu().getAlertBoxText());
+    }
+
+    @When("they drag and drop image {string} to image {string}")
+    public void they_drag_and_drop_image_to_image(String image1, String image2) {
+        basePage.dragAndDropPage().dragAndDrop(image1, image2);
+    }
+
+    @Then("they can see images correctly moved")
+    public void they_can_see_images_correctly_moved() {
+        Assert.assertEquals("A", basePage.dragAndDropPage().getImageText().get(1));
+        Assert.assertEquals("B", basePage.dragAndDropPage().getImageText().get(0));
     }
 
     @Then("they can click on the Alert")
@@ -53,6 +66,7 @@ public class StepDefinition {
             case "Frames" -> assertEquals("Frames", basePage.framesPage().getH3());
             case "Hovers" -> assertEquals("Hovers", basePage.hoverOverPage().getH3());
             case "Opening a new window" -> assertEquals("Opening a new window", basePage.windowsHandlingPage().getH3());
+            case "Drag and Drop" -> assertEquals("Drag and Drop", basePage.windowsHandlingPage().getH3());
         }
     }
 
