@@ -4,7 +4,7 @@ pipeline {
         stage("Build") {
             steps { // Missing 'steps' block added
                 echo "Build stage"
-                sh "mvn install" // Corrected to execute Maven command
+                bat "mvn install" // Corrected to execute Maven command
             }
         }
         stage("Test") {
