@@ -26,9 +26,9 @@ pipeline {
             steps {
                 echo "Merging QA branch into Main"
                 script {
-                    sh '''
-                    git config user.name "Jenkins"
-                    git config user.email "jenkins@example.com"
+                    bat '''
+                    git config user.name "joshi-tech"
+                    git config user.email "lkjoshi.tech@gmail.com"
                     git checkout main
                     git pull origin main
                     git merge qa
