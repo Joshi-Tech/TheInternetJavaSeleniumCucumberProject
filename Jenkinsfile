@@ -2,19 +2,19 @@ pipeline {
     agent any
     stages {
         stage("Build") {
-            steps { // Missing 'steps' block added
+            steps { 
                 echo "Build stage"
-                bat "mvn install" // Corrected to execute Maven command
+                bat "mvn install" // us sh instead bat if it is on Linux agent
             }
         }
         stage("Test") {
-            steps { // Missing 'steps' block added
+            steps { 
                 echo "Test stage"
-                sh "mvn test" // Corrected to execute Maven command
+                bat "mvn test" // us sh instead bat if it is on Linux agent
             }
         }
         stage("Deploy") {
-            steps { // Missing 'steps' block added
+            steps { 
                 echo "Deployed stage"
             }
         }
