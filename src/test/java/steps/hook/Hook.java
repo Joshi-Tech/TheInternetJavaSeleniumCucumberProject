@@ -45,7 +45,7 @@ public class Hook {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (configFileReader.getHeadLessMode() == true) {
+                if (configFileReader.getHeadLessMode()) {
                     chromeOptions.addArguments("--headless");
                     driver = new ChromeDriver(chromeOptions);
                     driver.get("https://the-internet.herokuapp.com/");
@@ -54,8 +54,6 @@ public class Hook {
                     driver.manage().window().maximize();
                     driver.get("https://the-internet.herokuapp.com/");
                 }
-
-
             }
             case "edge" -> {
                 WebDriverManager.edgedriver().setup();
@@ -69,7 +67,7 @@ public class Hook {
                 driver.manage().window().maximize();
                 driver.get("https://the-internet.herokuapp.com/");
             }
-            default -> new RuntimeException("Unable to find driver");
+            default -> throw new IllegalArgumentException("Invalid section");
         }
     }
 

@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FramesPage extends CommonAttributes {
 
@@ -11,6 +13,8 @@ public class FramesPage extends CommonAttributes {
 
     public String iFrameText() {
         driver.findElement(By.cssSelector("a[href='/iframe']")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".tox-edit-area__iframe")));
         driver.switchTo().frame(driver.findElement(By.cssSelector(".tox-edit-area__iframe")));
         return driver.findElement(By.cssSelector("#tinymce>p")).getText();
     }
