@@ -4,7 +4,7 @@ pipeline {
         stage("Build") {
             steps { 
                 echo "Build stage"
-                bat "mvn install" // us sh instead bat if it is on Linux agent
+                bat "mvn package" // us sh instead bat if it is on Linux agent
             }
         }
         stage("Test") {
